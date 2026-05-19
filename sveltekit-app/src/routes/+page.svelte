@@ -78,7 +78,7 @@
   </div>
   <img
     class="fixed bottom-2 left-1/2 -translate-x-1/2 w-20"
-    src="/logo-rock.png"
+    src="/logo-rock-24.png"
     alt=""
   />
 </main>
