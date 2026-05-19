@@ -8,6 +8,7 @@
   import { SplitText } from "gsap/SplitText";
   import SEO from "$lib/components/seo/SEO.svelte";
   import Video from "$lib/components/element/Video.svelte";
+  import Logo from "$lib/components/svg/Logo.svelte";
   import { onMount } from "svelte";
 
   let { data } = $props();
@@ -76,11 +77,12 @@
       Snipes x PSG
     </h1>
   </div>
-  <img
+  <!-- <img
     class="fixed bottom-2 left-1/2 -translate-x-1/2 w-20"
     src="/logo-rock-24.png"
     alt=""
-  />
+  /> -->
+  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-30"><Logo /></div>
 </main>
 
 <style>
