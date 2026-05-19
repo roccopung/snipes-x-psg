@@ -16,8 +16,9 @@
   let pageDescription = "Snipes x PSG";
   let title: HTMLElement | null = $state(null);
 
-  onMount(() => {
-    if (!gsap) return;
+  onMount(async () => {
+    const { default: gsap } = await import("gsap");
+    const { SplitText } = await import("gsap/SplitText");
     gsap.registerPlugin(SplitText);
 
     function SplitTextAnimation(target, config) {
