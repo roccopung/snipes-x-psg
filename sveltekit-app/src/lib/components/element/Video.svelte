@@ -115,7 +115,7 @@
       </media-mute-button></media-control-bar
     >
 
-    {#if !isLoop && !isAutoplay && isPlaying}
+    <!-- {#if !isLoop && !isAutoplay && isPlaying}
       <media-control-bar class="px-2 py-1 flex gap-0.5 z-0">
         <media-play-button
           class="base-play rounded-full aspect-square px-0.5 md:aspect-auto md:px-1"
@@ -136,7 +136,7 @@
           </media-fullscreen-button>
         {/if}
       </media-control-bar>
-    {/if}
+    {/if} -->
   </media-controller>
 {/if}
 
