@@ -52,29 +52,6 @@
   let aspectRatio = $state(1.77777778);
   let isPlaying = $state(false);
   let isPaused = $state(false);
-
-  // $effect(() => {
-  //   if (!player) return;
-
-  //   const onPlay = () => {
-  //     {
-  //       isPaused = false;
-  //       isPlaying = true;
-  //     }
-  //   };
-  //   const onPause = () => {
-  //     isPaused = true;
-  //     isPlaying = false;
-  //   };
-
-  //   player.addEventListener("play", onPlay);
-  //   player.addEventListener("pause", onPause);
-
-  //   return () => {
-  //     player.removeEventListener("play", onPlay);
-  //     player.removeEventListener("pause", onPause);
-  //   };
-  // });
 </script>
 
 {#if browser && src}
@@ -114,29 +91,6 @@
         <span slot="high">SOUND ON</span>
       </media-mute-button></media-control-bar
     >
-
-    <!-- {#if !isLoop && !isAutoplay && isPlaying}
-      <media-control-bar class="px-2 py-1 flex gap-0.5 z-0">
-        <media-play-button
-          class="base-play rounded-full aspect-square px-0.5 md:aspect-auto md:px-1"
-          notooltip
-        ></media-play-button>
-        <media-time-range class="overflow-hidden" notooltip></media-time-range>
-        <media-volume-range class="hidden xl:flex" notooltip
-        ></media-volume-range>
-        <media-mute-button
-          class="rounded-full text-brown aspect-square px-0.5 md:aspect-auto md:px-1"
-          notooltip
-        ></media-mute-button>
-        {#if fullscreen}
-          <media-fullscreen-button
-            class="justify-self-end font-bold rounded-full text-brown aspect-square px-0.5 md:aspect-auto md:px-1"
-            notooltip
-          >
-          </media-fullscreen-button>
-        {/if}
-      </media-control-bar>
-    {/if} -->
   </media-controller>
 {/if}
 
