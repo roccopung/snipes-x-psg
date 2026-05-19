@@ -1,5 +1,6 @@
 <script lang="ts">
   //@ts-nocheck
+  //
   import { useQuery } from "@sanity/sveltekit";
   import { urlFor } from "$lib/sanity/image";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
