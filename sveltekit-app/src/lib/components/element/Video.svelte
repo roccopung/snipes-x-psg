@@ -3,7 +3,7 @@
   import { urlFor } from "$lib/sanity/image";
   import { getImageDimensions } from "@sanity/asset-utils";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
-  import("media-chrome");
+  import "media-chrome";
   import { onMount } from "svelte";
   import { page } from "$app/state";
   import { browser } from "$app/environment";
