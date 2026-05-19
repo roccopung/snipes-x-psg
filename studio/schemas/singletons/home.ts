@@ -8,9 +8,9 @@ export const home = defineType({
   icon: HomeIcon,
   fields: [
     defineField({
-      name: "content",
-      title: "Content",
-      type: "string",
+      name: "video",
+      title: "Video",
+      type: "elementVideo",
     }),
   ],
   preview: {

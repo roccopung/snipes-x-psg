@@ -7,8 +7,6 @@ import { linkEmail } from "./objects/link/linkEmail";
 import { seo } from "./objects/seo";
 
 import { home } from "./singletons/home";
-import { about } from "./singletons/about";
-import { settings } from "./singletons/settings";
 
 export const schemaTypes = [
   //objects
@@ -22,6 +20,4 @@ export const schemaTypes = [
 
   //singletons
   home,
-  about,
-  settings,
 ];
