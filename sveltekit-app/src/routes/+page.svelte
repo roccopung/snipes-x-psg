@@ -62,7 +62,7 @@
   // });
 </script>
 
-<SEO {pageDescription} />
+<!-- <SEO {pageDescription} /> -->
 
 <main>
   <!-- <div class="relative w-full h-[100dvh] overflow-hidden">

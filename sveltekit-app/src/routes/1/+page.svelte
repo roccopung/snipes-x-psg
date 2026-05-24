@@ -3,8 +3,6 @@
   import { useQuery } from "@sanity/sveltekit";
   import { urlFor } from "$lib/sanity/image";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
-  import gsap from "gsap";
-  import { TextPlugin } from "gsap/TextPlugin";
   import { clickoutside } from "@svelte-put/clickoutside";
   import SEO from "$lib/components/seo/SEO.svelte";
   import Video from "$lib/components/element/Video.svelte";
@@ -64,6 +62,7 @@
 
   onMount(async () => {
     const { default: gsap } = await import("gsap");
+    const { TextPlugin } = await import("gsap/TextPlugin");
     gsap.registerPlugin(TextPlugin);
     gsap.set(formLabel, { opacity: 0 });
     gsap.set(formButton, { opacity: 0 });
