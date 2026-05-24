@@ -83,12 +83,15 @@
       ></media-poster-image>
     {/if}
 
-    <media-control-bar class="fixed top-2 right-2 typo-base">
+    <media-control-bar
+      class="fixed top-2 right-2 typo-base flex gap-0.5 opacity-50"
+    >
+      <span class="opacity-50">SOUND</span>
       <media-mute-button class="pointer-events-auto" notooltip>
-        <span slot="off">MUTED</span>
-        <span slot="low">SOUND ON</span>
-        <span slot="medium">SOUND ON</span>
-        <span slot="high">SOUND ON</span>
+        <span slot="off">OFF</span>
+        <span slot="low">ON</span>
+        <span slot="medium">ON</span>
+        <span slot="high">ON</span>
       </media-mute-button></media-control-bar
     >
   </media-controller>

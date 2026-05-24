@@ -29,6 +29,42 @@
 
       <!-- <Menu /> -->
       {@render children()}
+
+      <details
+        class="fixed top-2 left-2 cursor-pointer"
+        name="menu"
+        open={false}
+      >
+        <summary class="opacity-50">Pages</summary>
+        <nav>
+          <ul class="flex flex-col gap-1 pt-2">
+            <li
+              class="opacity-50 hover:opacity-100"
+              class:opacity-100={page?.route?.id === "/1"}
+            >
+              <a href="/1">V1 Roboto</a>
+            </li>
+            <li
+              class="opacity-50 hover:opacity-100"
+              class:opacity-100={page?.route?.id === "/2"}
+            >
+              <a href="/2">V1 Eurostile</a>
+            </li>
+            <li
+              class="opacity-50 hover:opacity-100"
+              class:opacity-100={page?.route?.id === "/3"}
+            >
+              <a href="/3">V2 Roboto</a>
+            </li>
+            <li
+              class="opacity-50 hover:opacity-100"
+              class:opacity-100={page?.route?.id === "/4"}
+            >
+              <a href="/4">V2 Eurostile</a>
+            </li>
+          </ul>
+        </nav>
+      </details>
     </QueryLoader>
   </VisualEditing>
 </PreviewMode>

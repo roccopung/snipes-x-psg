@@ -1,6 +1,5 @@
 <script lang="ts">
   //@ts-nocheck
-  //
   import { useQuery } from "@sanity/sveltekit";
   import { urlFor } from "$lib/sanity/image";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
@@ -66,7 +65,7 @@
 <SEO {pageDescription} />
 
 <main>
-  <div class="relative w-full h-[100dvh] overflow-hidden">
+  <!-- <div class="relative w-full h-[100dvh] overflow-hidden">
     <div class="absolute top-0 left-0 h-full min-w-full pointer-events-none">
       <Video video={page?.video} loop autoplay={true} muted={true} />
     </div>
@@ -77,12 +76,7 @@
       Snipes x PSG
     </h1>
   </div>
-  <!-- <img
-    class="fixed bottom-2 left-1/2 -translate-x-1/2 w-20"
-    src="/logo-rock-24.png"
-    alt=""
-  /> -->
-  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-30"><Logo /></div>
+  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-30"><Logo /></div> -->
 </main>
 
 <style>

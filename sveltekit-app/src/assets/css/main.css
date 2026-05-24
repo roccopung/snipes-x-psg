@@ -7,7 +7,6 @@
 
 html {
   font-size: 10px;
-  font-family: var(--font-body);
   color: var(--color-brown);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -22,9 +21,9 @@ body {
   overscroll-behavior: none;
 }
 
-.button {
+/*.button {
   @apply p-1 leading-1;
-}
+}*/
 
 a {
   color: var(--color-blue);

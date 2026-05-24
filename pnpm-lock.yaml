@@ -145,6 +145,9 @@ importers:
       '@sanity/types':
         specifier: ^5.7.0
         version: 5.25.1(@types/react@19.2.14)
+      '@svelte-put/clickoutside':
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@5.55.7(@typescript-eslint/types@8.59.3))
       '@sveltejs/adapter-auto':
         specifier: ^7.0.0
         version: 7.0.1(@sveltejs/kit@2.60.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.7(@typescript-eslint/types@8.59.3))(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.1)(yaml@2.9.0)))(svelte@5.55.7(@typescript-eslint/types@8.59.3))(typescript@5.9.3)(vite@8.0.13(@types/node@25.8.0)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.1)(yaml@2.9.0)))
@@ -2824,6 +2827,11 @@ packages:
 
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
+
+  '@svelte-put/clickoutside@4.0.0':
+    resolution: {integrity: sha512-36lLICc+RB6t/Kw0L6fZKU/y/yAAx3P+SsI2BtYM1GUBaYytSFHBWMw1c3TQEWj7Y8SgY6H3JsfEd2flbNWhqA==}
+    peerDependencies:
+      svelte: ^5.1.0
 
   '@svelte-put/lockscroll@2.0.1':
     resolution: {integrity: sha512-K+ZSISpPw0iSOthy2ioBV+WEWXc5Vcpj8Nppy1OoFMeCJGfpPv+P9s3oRQjL+kwZ7Ri80Ix4ga9eiMwuaqhrEw==}
@@ -9910,6 +9918,10 @@ snapshots:
   '@standard-schema/spec@1.1.0': {}
 
   '@standard-schema/utils@0.3.0': {}
+
+  '@svelte-put/clickoutside@4.0.0(svelte@5.55.7(@typescript-eslint/types@8.59.3))':
+    dependencies:
+      svelte: 5.55.7(@typescript-eslint/types@8.59.3)
 
   '@svelte-put/lockscroll@2.0.1(svelte@5.55.7(@typescript-eslint/types@8.59.3))':
     dependencies:
