@@ -61,6 +61,7 @@
   };
 
   onMount(async () => {
+    formAnimation.reset();
     const { default: gsap } = await import("gsap");
     const { TextPlugin } = await import("gsap/TextPlugin");
     gsap.registerPlugin(TextPlugin);

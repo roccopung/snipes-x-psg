@@ -75,6 +75,7 @@
     );
 
     closeForm = () => {
+      formAnimation.reset();
       const tl = gsap.timeline();
       tl.to([formInput, formLabel, formButton], {
         opacity: 0,
