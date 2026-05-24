@@ -35,32 +35,8 @@
       formLabel?.classList.remove("hidden");
     }
   };
-  const closeForm = () => {
-    const tl = gsap.timeline();
-    tl.to([formInput, formLabel, formButton], {
-      opacity: 0,
-      duration: 0.4,
-      ease: "power4.inOut",
-    })
-      .to(
-        formWrapper,
-        {
-          scaleX: 0,
-          duration: 0.5,
-          ease: "power4.inOut",
-        },
-        "+=1",
-      )
-      .to(
-        logoWrapper,
-        {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.inOut",
-        },
-        "+=3",
-      );
-  };
+
+  let closeForm: () => void = () => {};
 
   onMount(async () => {
     const { default: gsap } = await import("gsap");
@@ -97,6 +73,25 @@
       },
       0,
     );
+
+    closeForm = () => {
+      const tl = gsap.timeline();
+      tl.to([formInput, formLabel, formButton], {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power4.inOut",
+      })
+        .to(
+          formWrapper,
+          { scaleX: 0, duration: 0.5, ease: "power4.inOut" },
+          "+=1",
+        )
+        .to(
+          logoWrapper,
+          { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+          "+=3",
+        );
+    };
   });
 </script>
 
