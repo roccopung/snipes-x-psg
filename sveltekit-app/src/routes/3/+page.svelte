@@ -63,8 +63,7 @@
   };
 
   onMount(async () => {
-    // const { default: gsap } = await import("gsap");
-    // const { Text } = await import("gsap/Text");
+    const { default: gsap } = await import("gsap");
     gsap.registerPlugin(TextPlugin);
     gsap.set(formLabel, { opacity: 0 });
     gsap.set(formButton, { opacity: 0 });
