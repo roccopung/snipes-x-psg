@@ -114,13 +114,15 @@
 </script>
 
 <div class="font-roboto relative w-full h-[100dvh] overflow-hidden">
-  <div class="absolute top-0 left-0 h-full min-w-full pointer-events-none">
+  <div
+    class="absolute top-0 -left-full md:left-0 h-full min-w-full pointer-events-none"
+  >
     <Video video={page?.video} loop autoplay={true} muted={true} />
   </div>
 
   <div
     bind:this={logoWrapper}
-    class="fixed top-2 left-1/2 -translate-x-1/2 w-20 opacity-0"
+    class="fixed top-4 md:top-2 left-1/2 -translate-x-1/2 w-20 opacity-0"
   >
     <img src="/logo-rock-24.png" alt="" />
   </div>
@@ -135,7 +137,7 @@
     onclickoutside={showLabel}
   >
     {#if formAnimation.finished}
-      <label class="whitespace-nowrap" bind:this={formLabel} for="email"
+      <label class="whitespace-nowrap w-0" bind:this={formLabel} for="email"
       ></label>
       <input bind:this={formInput} name="email" type="email" />
       <button
