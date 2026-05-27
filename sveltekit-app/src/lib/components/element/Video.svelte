@@ -61,7 +61,7 @@
     autohide="-1"
   >
     <video
-      class="overflow-hidden"
+      class="h-full w-full object-cover"
       bind:this={player}
       {src}
       slot="media"

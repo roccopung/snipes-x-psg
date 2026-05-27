@@ -97,11 +97,7 @@
 </script>
 
 <div class="font-eurostile relative w-full h-[100dvh] overflow-hidden">
-  <div
-    class="absolute top-0 -left-full md:left-0 h-full min-w-full pointer-events-none"
-  >
-    <Video video={page?.video} loop autoplay={true} muted={true} />
-  </div>
+  <Video video={page?.video} loop autoplay={true} muted={true} />
 
   <div
     bind:this={logoWrapper}
