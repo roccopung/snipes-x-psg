@@ -6,6 +6,8 @@
   import { page } from "$app/state";
   import { resolve } from "$app/paths";
   import { client } from "$lib/sanity/client";
+  import Header from "$lib/components/Header.svelte";
+
   const { children, data }: LayoutProps = $props();
 
   // svelte-ignore state_referenced_locally -- previewEnabled only changes on full page reload
@@ -27,7 +29,6 @@
         </a>
       {/if}
 
-      <!-- <Menu /> -->
       {@render children()}
 
       <details
@@ -36,34 +37,30 @@
         open={false}
       >
         <summary class="opacity-50">Pages</summary>
-        <nav>
+        <div class="pages">
           <ul class="flex flex-col gap-1 pt-2">
-            <li
-              class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/1"}
-            >
-              <a href="/1">V1 Roboto</a>
-            </li>
             <li
               class="opacity-50 hover:opacity-100"
               class:opacity-100={page?.route?.id === "/2"}
             >
               <a href="/2">V1 Eurostile</a>
             </li>
-            <li
-              class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/3"}
-            >
-              <a href="/3">V2 Roboto</a>
-            </li>
+
             <li
               class="opacity-50 hover:opacity-100"
               class:opacity-100={page?.route?.id === "/4"}
             >
               <a href="/4">V2 Eurostile</a>
             </li>
+
+            <li
+              class="opacity-50 hover:opacity-100"
+              class:opacity-100={page?.route?.id === "/part-2"}
+            >
+              <a href="/part-2">Part 2</a>
+            </li>
           </ul>
-        </nav>
+        </div>
       </details>
     </QueryLoader>
   </VisualEditing>

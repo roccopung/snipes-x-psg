@@ -96,7 +96,7 @@
   });
 </script>
 
-<div class="font-eurostile relative w-full h-[100dvh] overflow-hidden">
+<div class="relative w-full h-[100dvh] overflow-hidden">
   <Video video={page?.video} loop autoplay={true} muted={true} />
 
   <div

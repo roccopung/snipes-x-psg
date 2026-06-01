@@ -10,6 +10,8 @@
   import Video from "$lib/components/element/Video.svelte";
   import Logo from "$lib/components/svg/Logo.svelte";
   import { formAnimation } from "$lib/states.svelte";
+  import Header from "$lib/components/Header.svelte";
+
   import { onMount, tick } from "svelte";
 
   let { data } = $props();
@@ -115,7 +117,7 @@
   });
 </script>
 
-<div class="font-eurostile relative w-full h-[100dvh] overflow-hidden">
+<div class="relative font-eurostile w-full h-[100dvh] overflow-hidden">
   <Video video={page?.video} loop autoplay={true} muted={true} />
 
   <div

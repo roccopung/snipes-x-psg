@@ -26,7 +26,28 @@ export const home = defineType({
           type: "array",
           validation: (Rule) =>
             Rule.length(4).warning("Exactly 4 images are required"),
-          of: [{ type: "elementImage" }],
+          of: [
+            defineField({
+              name: "item",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "image",
+                  type: "elementImage",
+                }),
+                defineField({
+                  name: "link",
+                  type: "linkExternal",
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "link.label",
+                  media: "image",
+                },
+              },
+            }),
+          ],
         }),
         defineField({
           name: "products",

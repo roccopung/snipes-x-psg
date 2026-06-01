@@ -11,6 +11,7 @@
     height?: string;
     width?: number;
     ratio?: number;
+    objectPosition?: string;
   }
 
   let {
@@ -22,6 +23,7 @@
     height = "auto",
     width,
     ratio = $bindable(),
+    objectPosition,
   }: Props = $props();
 
   let innerWidth = $state(1280);
@@ -61,20 +63,17 @@
 
 {#if hasAsset}
   <img
-    class="transition-fast
+    class="
 	{fit === 'contain'
       ? 'object-contain h-full min-w-full w-auto max-w-full'
       : 'object-cover h-full w-full'}
-	{height === 'full' ? 'h-full' : 'h-auto'}
-	{visible === true ? 'opacity-100' : 'opacity-0'}"
+	{height === 'full' ? 'h-full' : 'h-auto'}"
     loading={lazy ? "lazy" : "eager"}
     fetchpriority={lazy ? "low" : "high"}
     data-sizes="auto"
     width={dimensions.width}
     height={dimensions.height}
-    style="aspect-ratio: {aspectRatio}; object-position: {hotspot.x *
-      100}% {hotspot.y * 100}%;
-"
+    style="aspect-ratio: {aspectRatio}; object-position: {objectPosition ?? `${hotspot.x * 100}% ${hotspot.y * 100}%`};"
     alt={src.alt || alt}
     src={imageUrl}
     onload={() => (visible = true)}
