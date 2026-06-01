@@ -1,5 +1,5 @@
 packages:
   - "sveltekit-app"
   - "studio"
-onlyBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: true
