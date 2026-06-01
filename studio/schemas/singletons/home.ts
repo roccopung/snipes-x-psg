@@ -12,6 +12,50 @@ export const home = defineType({
       title: "Video",
       type: "elementVideo",
     }),
+    defineField({
+      name: "lineUp",
+      type: "lineUp",
+    }),
+    defineField({
+      name: "unitedByAttitude",
+      type: "object",
+      fields: [
+        defineField({
+          name: "campaign",
+          description: "Add 4 images",
+          type: "array",
+          validation: (Rule) =>
+            Rule.length(4).warning("Exactly 4 images are required"),
+          of: [{ type: "elementImage" }],
+        }),
+        defineField({
+          name: "products",
+          type: "array",
+          of: [
+            defineField({
+              name: "product",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "image",
+                  type: "elementImage",
+                }),
+                defineField({
+                  name: "link",
+                  type: "linkExternal",
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "link.label",
+                  media: "image",
+                },
+              },
+            }),
+          ],
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare() {
