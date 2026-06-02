@@ -41,16 +41,9 @@
           <ul class="flex flex-col gap-1 pt-2">
             <li
               class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/2"}
+              class:opacity-100={page?.route?.id === "/part-1"}
             >
-              <a href="/2">V1 Eurostile</a>
-            </li>
-
-            <li
-              class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/4"}
-            >
-              <a href="/4">V2 Eurostile</a>
+              <a href="/part-1">Part 1</a>
             </li>
 
             <li
