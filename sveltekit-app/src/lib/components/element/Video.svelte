@@ -30,7 +30,11 @@
       : false,
   );
 
-  let src = $derived(video?.url);
+  let src = $derived(
+    innerWidth.current < 768 && video.hasMobile
+      ? video?.mobileVideo?.url
+      : video?.url,
+  );
 
   let posterAsset = $derived(
     innerWidth < 768 && video?.poster?.mobileImage
@@ -52,6 +56,9 @@
   let aspectRatio = $state(1.77777778);
   let isPlaying = $state(false);
   let isPaused = $state(false);
+  $effect(() => {
+    console.log(src);
+  });
 </script>
 
 {#if browser && src}
