@@ -24,7 +24,7 @@
     class="campaign-wrapper flex gap-4 flex-col justify-center h-auto md:h-[100svh] w-full"
     bind:clientHeight={campaignHeight}
   >
-    <h3 class="text-center typo-base uppercase">United By Attitude</h3>
+    <h3 class="text-center typo-base uppercase">Shop the look</h3>
     <div class="px-2 md:py-0 md:px-0">
       {#if data?.campaign?.length > 0}
         <div class="flex flex-col gap-2 md:hidden">
