@@ -29,3 +29,7 @@ body {
 a {
   color: var(--color-blue);
 }
+
+.trim {
+  text-box: trim-both cap alphabetic;
+}
