@@ -34,7 +34,7 @@
 
 <nav
   bind:this={navWrapper}
-  class="fixed top-0 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center md:top-2 md:flex-row md:justify-between md:gap-4 md:w-[80vw]
+  class="fixed top-2 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center md:flex-row md:justify-between md:gap-4 md:w-[80vw]
   "
 >
   <div
