@@ -28,14 +28,18 @@
   }
 </script>
 
-<section class="w-full py-5 justify-center flex flex-col gap-4 bg-white">
+<section class="w-full py-5 justify-center flex flex-col gap-2 bg-white">
   <div class="relative w-full px-10">
-    <div class="embla" use:emblaCarouselSvelte={{ options }} onemblaInit={onInit}>
+    <div
+      class="embla"
+      use:emblaCarouselSvelte={{ options }}
+      onemblaInit={onInit}
+    >
       <div class="embla__container">
         {#each items as item, index}
           <a
             href={item?.link?.url ?? "#"}
-            class="embla__slide aspect-[4/5] ml-4"
+            class="embla__slide aspect-[4/5] ml-2"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -21,7 +21,7 @@
   class="united-by-attitude-section min-h-[100dvh] pt-12 pb-6 md:pt-0 flex flex-col items-start md:w-[80vw] mx-auto"
 >
   <div
-    class="campaign-wrapper flex gap-4 flex-col justify-center h-auto md:h-[100svh] w-full"
+    class="campaign-wrapper flex gap-2 flex-col justify-center h-auto md:h-[100svh] w-full"
     bind:clientHeight={campaignHeight}
   >
     <h3 class="text-center typo-base uppercase">Shop the look</h3>
