@@ -17,7 +17,7 @@
   });
 </script>
 
-<section class="line-up-section w-[80vw] mx-auto pt-30">
+<section class="line-up-section w-[80vw] mx-auto pt-15 md:pt-30">
   <div
     class="hidden w-full md:grid md:grid-cols-4 md:gap-5 transition-opacity duration-500"
     class:opacity-0={!mounted}
