@@ -29,7 +29,7 @@
 </script>
 
 <section class="w-full py-5 justify-center flex flex-col gap-2 bg-white">
-  <div class="relative w-full px-10">
+  <div class="relative w-full px-4">
     <div
       class="embla"
       use:emblaCarouselSvelte={{ options }}
@@ -53,14 +53,14 @@
       </div>
     </div>
     <button
-      class="embla__arrow embla__arrow--left absolute left-2 top-1/2 -translate-y-1/2 hover:opacity-50"
+      class="embla__arrow embla__arrow--left absolute left-0 top-1/2 -translate-y-1/2 hover:opacity-50"
       onclick={scrollPrev}
       aria-label="Previous slide"
     >
       <ArrowPrev />
     </button>
     <button
-      class="embla__arrow embla__arrow--right absolute right-2 top-1/2 -translate-y-1/2 hover:opacity-50"
+      class="embla__arrow embla__arrow--right absolute right-0 top-1/2 -translate-y-1/2 hover:opacity-50"
       onclick={scrollNext}
       aria-label="Next slide"
     >
@@ -81,8 +81,8 @@
   }
   .embla__slide {
     transform: translate3d(0, 0, 0);
-    flex: 0 0 auto;
-    width: 38vw;
+    flex: 0 0 100%;
+    width: 100%;
   }
 
   .image-container {
@@ -93,7 +93,9 @@
   @media (min-width: 768px) {
     .embla__slide {
       transform: translate3d(0, 0, 0);
-      width: 10vw;
+      flex: 0 0 auto;
+      width: 15vw;
+      min-width: 10rem;
       /*padding-right: 1.5rem;*/
     }
   }

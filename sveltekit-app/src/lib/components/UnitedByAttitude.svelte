@@ -27,21 +27,7 @@
     <h3 class="text-center typo-base uppercase">Shop the look</h3>
     <div class="px-2 md:py-0 md:px-0">
       {#if data?.campaign?.length > 0}
-        <div class="flex flex-col gap-2 md:hidden">
-          {#each data?.campaign as item, i}
-            <a
-              href={item?.link?.url ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="relative aspect-[4/5] overflow-hidden"
-            >
-              <Image image={item.image} alt="campaign image" />
-            </a>
-          {/each}
-        </div>
-        <div class="hidden md:flex w-full">
-          <Gallery items={data?.campaign} />
-        </div>
+        <Gallery items={data?.campaign} />
       {/if}
     </div>
     <a
@@ -54,7 +40,7 @@
   </div>
 
   <div
-    class="flex flex-col gap-2 px-2 py-8 md:grid md:grid-cols-6 md:px-0 md:py-20 looks-section"
+    class="flex flex-col gap-2 px-2 py-8 md:grid md:grid-cols-6 md:px-0 md:pb-20 looks-section"
   >
     {#if data?.products?.length > 0}
       {#each data?.products as item, i}
