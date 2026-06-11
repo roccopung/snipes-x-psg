@@ -26,6 +26,8 @@
 
   let logoWrapper: HTMLElement | null = $state(null);
 
+  let _gsap;
+
   const hideLabel = () => {
     formLabel?.classList.add("hidden");
     formInput?.focus();
@@ -36,7 +38,7 @@
     }
   };
   const closeForm = () => {
-    const tl = gsap.timeline();
+    const tl = _gsap.timeline();
     tl.to([formInput, formLabel, formButton], {
       opacity: 0,
       duration: 0.4,
@@ -66,6 +68,7 @@
     formAnimation.reset();
     const { default: gsap } = await import("gsap");
     const { TextPlugin } = await import("gsap/TextPlugin");
+    _gsap = gsap;
     gsap.registerPlugin(TextPlugin);
     gsap.set(formLabel, { opacity: 0 });
     gsap.set(formButton, { opacity: 0 });
@@ -140,7 +143,7 @@
       <input bind:this={formInput} name="email" type="email" />
       <button
         bind:this={formButton}
-        onclick={closeForm}
+        onclick={() => closeForm()}
         class="button hover:opacity-100 cursor-pointer">Send</button
       >
     {/if}
