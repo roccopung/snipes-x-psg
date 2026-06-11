@@ -30,31 +30,6 @@
       {/if}
 
       {@render children()}
-
-      <details
-        class="fixed top-2 left-2 cursor-pointer"
-        name="menu"
-        open={false}
-      >
-        <summary class="opacity-50">Pages</summary>
-        <div class="pages">
-          <ul class="flex flex-col gap-1 pt-2">
-            <li
-              class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/part-1"}
-            >
-              <a href="/part-1">Part 1</a>
-            </li>
-
-            <li
-              class="opacity-50 hover:opacity-100"
-              class:opacity-100={page?.route?.id === "/part-2"}
-            >
-              <a href="/part-2">Part 2</a>
-            </li>
-          </ul>
-        </div>
-      </details>
     </QueryLoader>
   </VisualEditing>
 </PreviewMode>
