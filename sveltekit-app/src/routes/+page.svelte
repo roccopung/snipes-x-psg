@@ -153,12 +153,12 @@
 <div class="relative font-eurostile w-full h-[100dvh] overflow-hidden">
   <Video video={page?.video} loop autoplay={true} muted={true} />
 
-  <div
+  <!-- <div
     bind:this={logoWrapper}
     class="fixed top-4 md:top-2 left-1/2 -translate-x-1/2 w-20 opacity-0"
   >
     <img src="/logo-rock-24.png" alt="" />
-  </div>
+  </div> -->
 
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
