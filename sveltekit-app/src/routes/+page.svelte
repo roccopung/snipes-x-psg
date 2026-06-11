@@ -1,15 +1,15 @@
 <script lang="ts">
   //@ts-nocheck
   import { useQuery } from "@sanity/sveltekit";
+  import { enhance } from "$app/forms";
   import { urlFor } from "$lib/sanity/image";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
   import { clickoutside } from "@svelte-put/clickoutside";
-  import SEO from "$lib/components/seo/SEO.svelte";
   import Video from "$lib/components/element/Video.svelte";
   import Logo from "$lib/components/svg/Logo.svelte";
   import { formAnimation } from "$lib/states.svelte";
   import Header from "$lib/components/Header.svelte";
-
+  import SEO from "$lib/components/seo/SEO.svelte";
   import { onMount, tick } from "svelte";
 
   let { data } = $props();
@@ -37,6 +37,38 @@
       formLabel?.classList.remove("hidden");
     }
   };
+  const showMessage = (text) => {
+    formInput.value = "";
+    formLabel?.classList.remove("hidden");
+    const tl = _gsap.timeline();
+    _gsap.fromTo(
+      formLabel,
+      {
+        duration: 0.2,
+        text: "",
+        ease: "power2.inOut",
+      },
+      {
+        duration: 0.2,
+        text: text,
+        ease: "power2.inOut",
+      },
+    );
+  };
+
+  const handleSubscribe = () => {
+    return async ({ result }) => {
+      if (result.type === "success") {
+        setTimeout(() => showMessage("Thank you"), 10);
+        setTimeout(() => closeForm(), 1000);
+      } else if (result.type === "failure" && result.data?.code === "exists") {
+        setTimeout(() => showMessage("Email already used"), 10);
+      } else {
+        setTimeout(() => showMessage("There was an error, try again"), 10);
+      }
+    };
+  };
+
   const closeForm = () => {
     const tl = _gsap.timeline();
     tl.to([formInput, formLabel, formButton], {
@@ -138,14 +170,28 @@
     onclickoutside={showLabel}
   >
     {#if formAnimation.finished}
-      <label class="whitespace-nowrap w-0" bind:this={formLabel} for="email"
-      ></label>
-      <input bind:this={formInput} name="email" type="email" />
-      <button
-        bind:this={formButton}
-        onclick={() => closeForm()}
-        class="button hover:opacity-100 cursor-pointer">Send</button
+      <form
+        method="POST"
+        action="?/subscribe"
+        use:enhance={handleSubscribe}
+        class="flex items-center justify-between w-full"
       >
+        <label class="whitespace-nowrap w-0" bind:this={formLabel} for="email"
+        ></label>
+        <input
+          class="w-full"
+          bind:this={formInput}
+          id="email"
+          name="email"
+          type="email"
+          required
+        />
+        <button
+          bind:this={formButton}
+          type="submit"
+          class="button hover:opacity-100 cursor-pointer">Send</button
+        >
+      </form>
     {/if}
   </div>
 </div>
@@ -165,8 +211,6 @@
     }
   }
 
-  input,
-  label,
   .button {
     text-box: trim-both cap alphabetic;
   }
