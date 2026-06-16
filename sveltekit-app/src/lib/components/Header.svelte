@@ -75,11 +75,5 @@
         >RSVP</button
       >
     </li>
-    <li>
-      <button
-        class="uppercase cursor-pointer hover:opacity-50 transition-fast bg-white md:bg-none p-0.5 trim"
-        >Contact</button
-      >
-    </li>
   </ul>
 </nav>
