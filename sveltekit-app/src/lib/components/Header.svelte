@@ -28,6 +28,12 @@
       unitedByAttitudeSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const goToRSVP = () => {
+    document
+      .querySelector(".rsvp-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
 </script>
 
 <svelte:window bind:scrollY />
@@ -64,8 +70,9 @@
     </li>
     <li>
       <button
+        onclick={goToRSVP}
         class="uppercase cursor-pointer hover:opacity-50 transition-fast bg-white md:bg-none p-0.5 trim"
-        >Newsletter</button
+        >RSVP</button
       >
     </li>
     <li>

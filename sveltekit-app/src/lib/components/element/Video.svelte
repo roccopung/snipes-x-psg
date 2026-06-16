@@ -56,9 +56,6 @@
   let aspectRatio = $state(1.77777778);
   let isPlaying = $state(false);
   let isPaused = $state(false);
-  $effect(() => {
-    console.log(src);
-  });
 </script>
 
 {#if browser && src}

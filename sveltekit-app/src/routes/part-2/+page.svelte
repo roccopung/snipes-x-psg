@@ -9,6 +9,7 @@
   import Header from "$lib/components/Header.svelte";
   import LineUp from "$lib/components/LineUp.svelte";
   import UBA from "$lib/components/UnitedByAttitude.svelte";
+  import Rsvp from "$lib/components/Rsvp.svelte";
 
   import { onMount, tick } from "svelte";
 
@@ -21,4 +22,5 @@
   <Header />
   <LineUp data={page?.lineUp} />
   <UBA data={page?.unitedByAttitude} />
+  <Rsvp />
 </div>
