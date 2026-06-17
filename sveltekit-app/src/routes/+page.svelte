@@ -20,6 +20,7 @@
   let message = $state("");
 
   let _gsap;
+  let resizeTimer;
 
   const openForm = async () => {
     if (open || done || !_gsap) return;
@@ -71,6 +72,25 @@
     };
   };
 
+  // While the form is open its width is a fixed px value, which no longer fits
+  // after a viewport change. Hide it instantly on resize, then re-measure and
+  // restore once resizing settles.
+  const handleResize = () => {
+    if (!open || done) return;
+    _gsap.set([formWrapper, formFields], { opacity: 0 });
+
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      _gsap.set(formWrapper, { clearProps: "width" });
+      const targetWidth = Math.min(
+        formWrapper.offsetWidth,
+        window.innerWidth * 0.92,
+      );
+      _gsap.set(formWrapper, { width: targetWidth, opacity: 1 });
+      _gsap.set(formFields, { opacity: 1 });
+    }, 200);
+  };
+
   onMount(async () => {
     const { default: gsap } = await import("gsap");
     _gsap = gsap;
@@ -86,10 +106,16 @@
         delay: 1.5,
       },
     );
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimer);
+    };
   });
 </script>
 
-<div class="relative font-eurostile w-full h-[100dvh] overflow-hidden">
+<div class="relative font-eurostile w-full h-[100svh] overflow-hidden">
   <Video video={page?.video} loop autoplay={true} muted={true} />
 
   <!-- <div
