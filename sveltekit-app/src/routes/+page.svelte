@@ -24,7 +24,8 @@
   const openForm = async () => {
     if (open || done || !_gsap) return;
 
-    bottomSection?.scrollIntoView({ behavior: "smooth" });
+    const top = bottomSection.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: "smooth" });
 
     const collapsedWidth = formWrapper.offsetWidth;
     open = true;
@@ -65,7 +66,7 @@
             "+=1.2",
           );
       } else {
-        message = "There was an error, try again";
+        message = "Error, try again";
       }
     };
   };
@@ -76,8 +77,14 @@
 
     gsap.fromTo(
       formWrapper,
-      { scale: 0 },
-      { scale: 1, duration: 0.8, ease: "power4.out", delay: 1.5 },
+      { scale: 0, xPercent: -50 },
+      {
+        scale: 1,
+        xPercent: -50,
+        duration: 0.8,
+        ease: "power4.out",
+        delay: 1.5,
+      },
     );
   });
 </script>
@@ -95,7 +102,7 @@
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
-    class="bg-black/80 text-white px-2 md:px-4 py-2 pb-1.5 flex flex-col md:flex-row items-center gap-1 md:gap-3 overflow-hidden fixed bottom-4 left-1/2 -translate-x-1/2 rounded-l md:rounded-full z-10"
+    class="bg-black/80 text-white px-2 md:px-4 py-2 pb-1.5 flex flex-col md:flex-row items-center gap-1 md:gap-3 overflow-hidden fixed bottom-4 left-1/2 rounded-l md:rounded-full z-10"
     class:cursor-pointer={!open}
     bind:this={formWrapper}
     onclick={openForm}
