@@ -2,14 +2,7 @@
   //@ts-nocheck
   import { useQuery } from "@sanity/sveltekit";
   import { enhance } from "$app/forms";
-  import { urlFor } from "$lib/sanity/image";
-  import { innerWidth, innerHeight } from "svelte/reactivity/window";
-  import { clickoutside } from "@svelte-put/clickoutside";
   import Video from "$lib/components/element/Video.svelte";
-  import Logo from "$lib/components/svg/Logo.svelte";
-  import { formAnimation } from "$lib/states.svelte";
-  import Header from "$lib/components/Header.svelte";
-  import SEO from "$lib/components/seo/SEO.svelte";
   import { onMount, tick } from "svelte";
 
   let { data } = $props();
@@ -18,134 +11,73 @@
   let pageDescription = "Snipes x PSG";
 
   let formWrapper: HTMLElement | null = $state(null);
-  let formInput: HTMLElement | null = $state(null);
-  let formLabel: HTMLElement | null = $state(null);
-  let formPlaceholder: string = "Email address";
-  let formButton: HTMLElement | null = $state(null);
-  let inputWidth: number = $state(0);
+  let formFields: HTMLElement | null = $state(null);
+  let messageEl: HTMLElement | null = $state(null);
+  let bottomSection: HTMLElement | null = $state(null);
 
-  let logoWrapper: HTMLElement | null = $state(null);
+  let open = $state(false);
+  let done = $state(false);
+  let message = $state("");
 
   let _gsap;
 
-  const hideLabel = () => {
-    formLabel?.classList.add("hidden");
-    formInput?.focus();
-  };
-  const showLabel = () => {
-    if (formInput?.value === "") {
-      formLabel?.classList.remove("hidden");
-    }
-  };
-  const showMessage = (text) => {
-    formInput.value = "";
-    formLabel?.classList.remove("hidden");
-    const tl = _gsap.timeline();
-    _gsap.fromTo(
-      formLabel,
-      {
-        duration: 0.2,
-        text: "",
-        ease: "power2.inOut",
-      },
-      {
-        duration: 0.2,
-        text: text,
-        ease: "power2.inOut",
-      },
+  const openForm = async () => {
+    if (open || done || !_gsap) return;
+
+    bottomSection?.scrollIntoView({ behavior: "smooth" });
+
+    const collapsedWidth = formWrapper.offsetWidth;
+    open = true;
+    await tick();
+
+    // measure the natural width of the expanded content, capped at 92vw
+    const targetWidth = Math.min(
+      formWrapper.offsetWidth,
+      window.innerWidth * 0.92,
     );
+    _gsap.set(formWrapper, { width: collapsedWidth });
+
+    const tl = _gsap.timeline();
+    tl.to(formWrapper, {
+      width: targetWidth,
+      duration: 1,
+      ease: "expo.inOut",
+    }).to(formFields, { opacity: 1, duration: 0.4, ease: "power2.inOut" });
   };
 
-  const handleSubscribe = () => {
+  const handleRsvp = () => {
     return async ({ result }) => {
       if (result.type === "success") {
-        setTimeout(() => showMessage("Thank you"), 10);
-        setTimeout(() => closeForm(), 1000);
-      } else if (result.type === "failure" && result.data?.code === "exists") {
-        setTimeout(() => showMessage("Email already used"), 10);
+        done = true;
+        message = "Thank you, you're on the list";
+        await tick();
+
+        const tl = _gsap.timeline();
+        tl.to(formWrapper, {
+          width: "auto",
+          duration: 0.6,
+          ease: "power4.inOut",
+        })
+          .to(messageEl, { opacity: 1, duration: 0.4, ease: "power2.inOut" })
+          .to(
+            formWrapper,
+            { opacity: 0, duration: 0.4, ease: "power4.inOut" },
+            "+=1.2",
+          );
       } else {
-        setTimeout(() => showMessage("There was an error, try again"), 10);
+        message = "There was an error, try again";
       }
     };
   };
 
-  const closeForm = () => {
-    const tl = _gsap.timeline();
-    tl.to([formInput, formLabel, formButton], {
-      opacity: 0,
-      duration: 0.4,
-      ease: "power4.inOut",
-    })
-      .to(
-        formWrapper,
-        {
-          width: "4rem",
-          duration: 0.5,
-          ease: "power4.inOut",
-        },
-        "+=1",
-      )
-      .to(
-        formWrapper,
-        {
-          scale: 0,
-          duration: 1,
-          ease: "power4.inOut",
-        },
-        "+=1",
-      );
-  };
-
   onMount(async () => {
-    formAnimation.reset();
     const { default: gsap } = await import("gsap");
-    const { TextPlugin } = await import("gsap/TextPlugin");
     _gsap = gsap;
-    gsap.registerPlugin(TextPlugin);
-    gsap.set(formLabel, { opacity: 0 });
-    gsap.set(formButton, { opacity: 0 });
-
-    const tl = gsap.timeline();
 
     gsap.fromTo(
       formWrapper,
-      { scale: 0, opacity: 0 },
-      { opacity: 1, scale: 1, duration: 1, ease: "power4.inOut", delay: 1.5 },
-    );
-
-    tl.to(
-      formWrapper,
-      {
-        width: "30rem",
-        duration: 1.2,
-        ease: "expo.inOut",
-        onComplete: async () => {
-          formAnimation.trigger();
-          await tick();
-          let tl = gsap.timeline();
-          gsap.to(formButton, {
-            opacity: 0.5,
-            duration: 0.1,
-            ease: "power2.inOut",
-            onComplete: () => gsap.set(formButton, { clearProps: "opacity" }),
-          });
-          tl.to(formLabel, {
-            opacity: 1,
-            duration: 0.4,
-            text: formPlaceholder,
-            ease: "power2.inOut",
-          }).to(
-            logoWrapper,
-            {
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.inOut",
-            },
-            6,
-          );
-        },
-      },
-      3,
+      { scale: 0 },
+      { scale: 1, duration: 0.8, ease: "power4.out", delay: 1.5 },
     );
   });
 </script>
@@ -163,37 +95,84 @@
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
-    class="px-2 h-4 min-w-4 bg-black/80 w-0 rounded-full text-white flex items-center justify-between fixed bottom-4 left-1/2 -translate-x-1/2 opacity-0"
+    class="bg-black/80 text-white px-2 md:px-4 py-2 pb-1.5 flex flex-col md:flex-row items-center gap-1 md:gap-3 overflow-hidden fixed bottom-4 left-1/2 -translate-x-1/2 rounded-l md:rounded-full z-10"
+    class:cursor-pointer={!open}
     bind:this={formWrapper}
-    use:clickoutside
-    onclick={hideLabel}
-    onclickoutside={showLabel}
+    onclick={openForm}
   >
-    {#if formAnimation.finished}
-      <form
-        method="POST"
-        action="?/subscribe"
-        use:enhance={handleSubscribe}
-        class="flex items-center justify-between w-full"
-      >
-        <label class="whitespace-nowrap w-0" bind:this={formLabel} for="email"
-        ></label>
-        <input
-          class="w-full"
-          bind:this={formInput}
-          id="email"
-          name="email"
-          type="email"
-          required
-        />
-        <button
-          bind:this={formButton}
-          type="submit"
-          class="button hover:opacity-100 cursor-pointer">Send</button
+    <span class="font-eurostile font-bold uppercase whitespace-nowrap"
+      >RSVP</span
+    >
+
+    {#if open}
+      {#if done}
+        <p bind:this={messageEl} class="whitespace-nowrap opacity-0">
+          {message}
+        </p>
+      {:else}
+        <form
+          method="POST"
+          action="?/rsvp"
+          use:enhance={handleRsvp}
+          bind:this={formFields}
+          class="flex flex-col gap-1 md:flex-row items-stretch md:items-center md:gap-3 w-full opacity-0"
         >
-      </form>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            class="bg-transparent outline-none w-full md:w-auto text-center md:text-left"
+          />
+          <input
+            name="lname"
+            type="text"
+            placeholder="Surname"
+            required
+            class="bg-transparent outline-none w-full md:w-auto text-center md:text-left"
+          />
+          <input
+            name="fname"
+            type="text"
+            placeholder="Name"
+            required
+            class="bg-transparent outline-none w-full md:w-auto text-center md:text-left"
+          />
+          <input
+            name="age"
+            type="number"
+            min="1"
+            placeholder="Age"
+            required
+            class="bg-transparent outline-none w-full md:w-10 text-center md:text-left"
+          />
+          <button type="submit" class="button hover:opacity-100 cursor-pointer"
+            >Send</button
+          >
+
+          {#if message}
+            <p class="uppercase whitespace-nowrap">{message}</p>
+          {/if}
+        </form>
+      {/if}
     {/if}
   </div>
+</div>
+
+<div
+  class="bottom relative h-[100svh] overflow-hidden"
+  bind:this={bottomSection}
+>
+  <img
+    class="hidden md:block w-full h-full object-cover"
+    src="https://cdn.sanity.io/images/lbh5da21/production/a5c55dbde0180ab7992901c60a4f5ef649946f3e-2000x1125.jpg"
+    alt=""
+  />
+  <img
+    class="md:hidden h-full object-cover w-full"
+    src="https://cdn.sanity.io/images/lbh5da21/production/4416cba50a098807b067b9d23773429afa472d19-844x1500.jpg"
+    alt=""
+  />
 </div>
 
 <style>
@@ -203,6 +182,13 @@
     }
     outline: none;
   }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
   .button {
     opacity: 0.5;
     transition: opacity 0.15s ease;
@@ -211,7 +197,7 @@
     }
   }
 
-  .button {
+  /*.button {
     text-box: trim-both cap alphabetic;
-  }
+  }*/
 </style>

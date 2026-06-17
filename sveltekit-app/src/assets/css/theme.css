@@ -14,13 +14,13 @@
   font-style: normal;
 }
 
-/*@font-face {
+@font-face {
   font-family: "Eurostile";
   src: url("/fonts/EurostileLTProUnicode-Demi.woff") format("woff");
-  font-weight: 500;
+  font-weight: 700;
   font-display: block;
   font-style: normal;
-}*/
+}
 
 @theme {
   --font-roboto: "Roboto", "Helvetica Neue", sans-serif;
@@ -43,4 +43,5 @@
   --duration-fast: 150ms;
 
   --radius-*: initial;
+  --radius-l: 2rem;
 }
