@@ -95,17 +95,22 @@
     const { default: gsap } = await import("gsap");
     _gsap = gsap;
 
-    gsap.fromTo(
-      formWrapper,
-      { scale: 0, xPercent: -50 },
-      {
-        scale: 1,
-        xPercent: -50,
-        duration: 0.8,
-        ease: "power4.out",
-        delay: 1.5,
-      },
-    );
+    gsap.set(formWrapper, { opacity: 0, scale: 0, xPercent: -50 });
+
+    gsap.to(formWrapper, {
+      opacity: 1,
+      duration: 0.4,
+      ease: "power4.out",
+      delay: 1.5,
+    });
+
+    gsap.to(formWrapper, {
+      scale: 1,
+      xPercent: -50,
+      duration: 0.8,
+      ease: "power4.out",
+      delay: 1.5,
+    });
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -128,7 +133,7 @@
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
-    class="bg-black/80 text-white px-2 md:px-4 py-2 pb-1.5 flex flex-col md:flex-row items-center gap-1 md:gap-3 overflow-hidden fixed bottom-4 left-1/2 rounded-l md:rounded-full z-10"
+    class="bg-black/80 text-white px-2 md:px-4 py-2 pb-1.5 flex flex-col md:flex-row items-center gap-1 md:gap-3 overflow-hidden fixed bottom-4 left-1/2 rounded-l md:rounded-full z-10 opacity-0"
     class:cursor-pointer={!open}
     bind:this={formWrapper}
     onclick={openForm}
