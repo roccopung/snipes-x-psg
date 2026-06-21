@@ -5,15 +5,22 @@
   import Video from "$lib/components/element/Video.svelte";
   import { onMount, tick } from "svelte";
 
-  let { data } = $props();
-  let query = $derived(useQuery(data));
-  let page = $derived($query.data);
+  // let { data } = $props();
+  // let query = $derived(useQuery(data));
+  // let page = $derived($query.data);
   let pageDescription = "Snipes x PSG";
 
   let formWrapper: HTMLElement | null = $state(null);
   let formFields: HTMLElement | null = $state(null);
   let messageEl: HTMLElement | null = $state(null);
   let bottomSection: HTMLElement | null = $state(null);
+
+  let video = {
+    url: "/16-9.mp4",
+    mobileVideo: {
+      url: "/9-16.mp4",
+    },
+  };
 
   let open = $state(false);
   let done = $state(false);
@@ -121,7 +128,7 @@
 </script>
 
 <div class="relative font-eurostile w-full h-[100svh] overflow-hidden">
-  <Video video={page?.video} loop autoplay={true} muted={true} />
+  <Video {video} loop autoplay={true} muted={true} />
 
   <!-- <div
     bind:this={logoWrapper}
@@ -203,12 +210,12 @@
 >
   <img
     class="hidden md:block w-full h-full object-cover"
-    src="https://cdn.sanity.io/images/lbh5da21/production/a5c55dbde0180ab7992901c60a4f5ef649946f3e-2000x1125.jpg"
+    src="/VISUAL.png"
     alt=""
   />
   <img
     class="md:hidden h-full object-cover w-full"
-    src="https://cdn.sanity.io/images/lbh5da21/production/4416cba50a098807b067b9d23773429afa472d19-844x1500.jpg"
+    src="/VISUAL-1.png"
     alt=""
   />
 </div>

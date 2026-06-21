@@ -8,15 +8,15 @@ import {
 } from "$env/static/private";
 import type { Actions, PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ locals: { sanity } }) => {
-  const { loadQuery } = sanity;
-  const initial = await loadQuery(homeQuery);
+// export const load: PageServerLoad = async ({ locals: { sanity } }) => {
+//   const { loadQuery } = sanity;
+//   const initial = await loadQuery(homeQuery);
 
-  return {
-    query: homeQuery,
-    options: { initial },
-  };
-};
+//   return {
+//     query: homeQuery,
+//     options: { initial },
+//   };
+// };
 
 export const actions: Actions = {
   rsvp: async ({ request }) => {
